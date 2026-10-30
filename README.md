@@ -1,78 +1,80 @@
 # HEAL-DP: Homomorphic Encryption Aggregated Learning with Differential Privacy
 
-**Unlocking the value of health data without compromising privacy**
+*Unlocking the value of health data without compromising privacy*
 
-HEAL-DP is a research framework for investigating how Privacy-Enhancing Technologies (PETs) can support healthcare analytics across distributed data holders. It examines the use of **Differential Privacy (DP)**, **Homomorphic Encryption (HE)**, and **Federated Learning (FL)** to reduce information exposure during statistical analysis and collaborative predictive modelling.
+HEAL-DP is a research framework investigating how **Differential Privacy (DP)**, **Homomorphic Encryption (HE)**, and **Federated Learning (FL)** can support statistical analysis and predictive modelling across distributed healthcare data holders while limiting information exposure.
 
-The repository provides the research implementations, modelling notebooks and evaluation code. The accompanying report presents the architecture, experimental methodology, results, limitations and discussion in detail.
+This repository contains the research implementations, modelling notebooks, and evaluation code. The accompanying technical report describes the architecture, experimental methodology, findings, trade-offs, and limitations.
 
 ## Research overview
 
-Healthcare data can inform research, service planning and predictive modelling, but its sensitive nature makes data sharing and cross-institutional analysis challenging. HEAL-DP investigates complementary protections at different stages of an analytical workflow:
+Healthcare data can support research, service planning, and predictive modelling, but its sensitivity creates challenges for data sharing and collaboration across institutions. HEAL-DP examines three complementary approaches:
 
 | Research component | Purpose |
 | --- | --- |
-| **Central Differential Privacy** | Controlled release of aggregate statistics with privacy-budget accounting and query governance. |
-| **Homomorphic Encryption + DP** | Protection of selected intermediate aggregates during computation, alongside differentially private statistical releases. |
-| **Federated Learning + patient-level DP** | Collaborative model training across simulated hospital nodes, evaluated against centralised and non-private federated baselines. |
+| **Central Differential Privacy** | Controlled release of aggregate statistics through privacy-budget accounting and query governance. |
+| **Homomorphic Encryption + DP** | Protection of selected intermediate aggregates during computation, combined with differentially private statistical releases. |
+| **Federated Learning + patient-level DP** | Collaborative predictive modelling across simulated hospital nodes, evaluated against centralised and non-private federated baselines. |
 
-The framework was evaluated in a **five-hospital simulated research setting using authorised MIMIC-IV data**. It is an experimental implementation, not a production clinical service.
+The research was evaluated in a **five-hospital simulated setting using authorised MIMIC-IV data**. HEAL-DP is an experimental research implementation, not a production clinical system.
 
 ## Technical report and research results
 
-**[Read the HEAL-DP technical report](report/HEAL-DP_Technical_Report.pdf)** *(report PDF to be added to this repository)*
+**[Read the HEAL-DP Technical Report](report/HEAL-DP_Report.pdf)**
 
-The report is the primary reference for the system architecture, privacy assumptions, experimental settings and findings. It includes evaluation of statistical utility and disclosure risk, encrypted computation and computational overhead, and the privacy–utility behaviour of federated predictive modelling.
+The technical report is the primary reference for the system architecture, privacy assumptions, study design, experimental results, and limitations. It covers statistical utility and disclosure-risk evaluation, encrypted computation and computational overhead, and the privacy–utility behaviour of federated predictive modelling.
 
-**Research results are derived from experiments conducted on authorised MIMIC-IV data.** Selected, disclosure-reviewed study-level results may be presented in the report and interactive demonstrator. The repository does not include MIMIC-IV records, patient-level datasets, hospital partitions, model weights or restricted experimental outputs.
+**The reported research results originate from experiments performed using authorised MIMIC-IV data.** The repository does not distribute MIMIC-IV patient records, patient-level datasets, hospital partitions, model weights, or restricted experimental outputs.
 
 ## Interactive demonstrator
 
-A companion **Streamlit demonstrator** presents the HEAL-DP research approach through an interactive overview of the architecture, privacy-enhancing techniques and selected experimental findings.
+A companion **Streamlit demonstrator** presents the HEAL-DP architecture, privacy-enhancing techniques, and selected research findings through an interactive interface.
 
-**Streamlit app:** *Public link to be added after deployment.*
+**Streamlit demonstrator:** Link to be added after deployment.
 
-The demonstrator distinguishes two types of content:
+The demonstrator distinguishes between:
 
-- **Research findings:** Results from HEAL-DP experiments performed using authorised **MIMIC-IV** data. Only appropriately disclosure-reviewed summaries and visualisations should be displayed publicly; patient-level data is not accessible through the app.
-- **Interactive synthetic-data demonstration:** Exploratory scenarios using **synthetic data generated with [NHS Synth (NHSSynth)](https://github.com/nhsengland/NHSSynth)**. These scenarios illustrate the workflow without providing access to MIMIC-IV data.
+- **Research results:** Selected, disclosure-reviewed summaries and visualisations from HEAL-DP experiments conducted using **MIMIC-IV** data.
+- **Interactive demonstration:** Synthetic healthcare data generated using [NHSSynth](https://github.com/nhsengland/NHSSynth) to illustrate the analytical workflows and privacy-enhancing techniques.
 
-**No MIMIC-IV patient data is shared with or made available through the public demonstrator.**. Any MIMIC-IV-derived figures displayed publicly require appropriate disclosure review before deployment.
+**No MIMIC-IV patient-level data is shared through the public demonstrator.** The interactive workflows use synthetic data; any MIMIC-IV-derived findings made public must first undergo appropriate disclosure review. The Streamlit application is hosted separately, and its source code is not included in this repository.
 
 ## Repository contents
 
 ```text
-coordinator/           Central-DP coordination, privacy accounting and audit logic
-node/                  Hospital-node statistical query implementation
-he_pipeline/           HE-assisted analytics, release services and automated tests
-federated_learning/    Data preparation, centralised and federated training, DP accounting
-modelling_baselines/   A1–A3 feature reduction and logistic-regression notebooks
-experiments/           Statistical evaluation and comparison code
-experiments_disclosure/ Disclosure-risk evaluation code
-report/                Technical report (to be added)
+coordinator/             Central-DP coordination, privacy accounting and audit logic
+node/                    Hospital-node statistical query implementation
+he_pipeline/             HE-assisted analytics, release services and automated tests
+federated_learning/      Data preparation, centralised and federated training, DP accounting
+modelling_baselines/     A1–A3 feature reduction and logistic-regression notebooks
+experiments/             Statistical evaluation and comparison code
+experiments_disclosure/  Disclosure-risk evaluation code
+report/                  HEAL-DP technical report
 ```
 
-The modelling workflow includes medication feature reduction (A1), laboratory feature reduction (A2), and centralised logistic regression (A3). The FL experiments use a corresponding linear binary-classification model and fixed patient-disjoint partitions for **F0** (centralised), **F1** (federated) and **F2** (federated with patient-level DP). A3 uses a separate global patient-level split; F0–F2 follow the hospital-based experimental protocol.
+The modelling workflow covers medication feature reduction (**A1**), laboratory feature reduction (**A2**), and centralised logistic regression (**A3**). The federated-learning experiments use a corresponding linear binary-classification model and fixed, patient-disjoint partitions for **F0** (centralised training), **F1** (non-private federated training), and **F2** (federated training with patient-level DP).
+
+A3 uses a separate global patient-level split, whereas F0–F2 follow the fixed hospital-based partitioning protocol used for the federated experiments.
 
 ## Running the research code
 
-The components have separate Python dependency configurations and should be installed in separate environments:
+The components have separate dependency configurations and should be run in appropriate Python environments:
 
-| Component | Dependency file |
+| Component | Dependency configuration |
 | --- | --- |
 | Central DP | `requirements-cdp.txt` |
 | HE + DP | `requirements-he.txt` |
-| Federated learning + DP | `pyproject.toml` (Python 3.11; Flower and Opacus) |
+| Federated Learning + DP | `pyproject.toml` (Python 3.11; Flower and Opacus) |
 
-The A1–A3 notebooks accept the environment variable `MIMIC_FAIRNESS_WORKDIR` to identify their local research workspace:
+The A1–A3 notebooks use the `MIMIC_FAIRNESS_WORKDIR` environment variable to locate the research workspace. For example, in PowerShell:
 
-Researchers must supply authorised data and the preprocessing artifacts expected by the original experimental protocol. The existing patient-partition assumptions and calibrated DP parameters are study-specific; using different data or training settings requires further validation and, where applicable, recalibration.
+```powershell
+$env:MIMIC_FAIRNESS_WORKDIR = "workspace-path"
+```
 
-## Data availability and responsible use
+Researchers must supply the input data and preprocessing artifacts required by the original experimental protocol. The feature specification, patient partitions, and DP calibration reflect the study configuration; applying the implementation to other data or training settings requires validation and, where applicable, recalibration.
 
-MIMIC-IV is a controlled-access healthcare dataset and **is not included** in this repository. Access to the underlying data must be obtained independently under the applicable terms. The public demonstrator uses synthetic data for interactive exploration; it does not expose restricted records or run public queries against the original MIMIC-IV hospital services.
-
-The software is intended for research and methodological evaluation. Its experimental privacy and security assumptions should not be interpreted as a certification for clinical deployment.
+The dataset and corresponding access permissions are **not provided** by this repository. The code and demonstrator are intended for research and methodological evaluation, not clinical deployment.
 
 ## License
 
