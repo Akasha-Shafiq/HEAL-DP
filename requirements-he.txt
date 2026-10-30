@@ -1,0 +1,9 @@
+
+tenseal==0.3.17
+pytest
+pandas==3.0.5
+fastapi==0.141.1
+uvicorn==0.52.4
+opendp==0.15.1
+diffprivlib==0.6.6
+scikit-learn==1.6.1

@@ -1,0 +1,88 @@
+﻿# ================================
+# Restricted healthcare data
+# ================================
+data/
+datasets/
+results/
+outputs/
+logs/
+artifacts/
+checkpoints/
+weights/
+.he_runtime/
+
+# Data files
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.arrow
+*.xlsx
+*.db
+*.sqlite
+*.sqlite3
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.jsonl
+
+# Trained models and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+*.safetensors
+
+# ================================
+# Cryptographic keys and secrets
+# ================================
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+*.p12
+*.pfx
+
+*secret_context*
+*private_context*
+
+# ================================
+# Modelling notebooks
+# ================================
+
+# Ignore notebooks by default
+*.ipynb
+
+# Exclude unreviewed modelling files
+/modelling_baselines/*
+
+# Include only reviewed research notebooks
+!/modelling_baselines/A1_No_imputation_feature_reduction.ipynb
+!/modelling_baselines/A2_Laboratory_Feature_Reduction.ipynb
+!/modelling_baselines/A3_Centralized_Baseline.ipynb
+
+# ================================
+# Historical implementation backups
+# ================================
+*_before_*.py
+*_RESERVATION_FINAL.py
+
+# ================================
+# Local Python environments
+# ================================
+.venv/
+.venv-*/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+*.pyc
+
+# Local development tools
+.vscode/
+.idea/

@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mimic-dp-federated"
+version = "0.1.0"
+description = "Federated learning experiments for the MIMIC-DP research platform"
+license = "MIT"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "flwr[simulation]==1.39.0",
+    "numpy",
+    "pandas",
+    "scikit-learn",
+    "torch",
+    "opacus==1.6.0",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["federated_learning"]
+
+[tool.flwr.app]
+publisher = "local-research"
+fab-include = ["federated_learning/**/*.py"]
+
+[tool.flwr.app.components]
+serverapp = "federated_learning.federated.patient_dp.server_app:app"
+clientapp = "federated_learning.federated.patient_dp.client_app:app"
+
+[tool.flwr.app.config]
+project-root = "."
+num-server-rounds = 30
+local-epochs = 1
+batch-size = 256
+learning-rate = 0.05
+seed = 42
+replicate-id = 1
+
+training-strategy = "strategy_b_k5"
+
+clipping-norm = 2.0
+target-epsilon = 8.0
+delta = 0.00001

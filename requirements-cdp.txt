@@ -1,0 +1,7 @@
+fastapi==0.141.1
+uvicorn==0.52.4
+httpx==0.28.1
+pandas==2.3.3
+diffprivlib==0.6.6
+scikit-learn==1.6.1
+opendp==0.15.1
