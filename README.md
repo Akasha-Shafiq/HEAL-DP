@@ -1,4 +1,5 @@
-# Privacy-Enhancing Technologies for Healthcare Analytics
+# HEAL-DP: Homomorphic Encryption Aggregated Learning with Differential Privacy
+## Unlocking the value of health data with out compromising privacy
 
 **Research code for central differential privacy, homomorphic-encryption-assisted analytics, and patient-level differentially private federated learning.**
 
@@ -42,20 +43,15 @@ These approaches address **different trust boundaries**. Central DP limits infor
 ```
 
 
-## Data access and handling
-
-The code was developed for research involving MIMIC-IV-derived cohorts. **No data access is conferred by this repository.** Obtain the appropriate permissions and comply with the relevant data-use terms before obtaining or processing restricted data.
-
 
 ## Reproducing the modelling and FL experiments
 
 ### A1–A3: feature reduction and centralised modelling
 
-The approved notebooks comprise medication feature reduction (A1), laboratory feature reduction (A2), and the centralised logistic-regression baseline (A3). Their private working directory is selected with `MIMIC_FAIRNESS_WORKDIR`.
+The approved notebooks comprise medication feature reduction (A1), laboratory feature reduction (A2), and the centralised logistic-regression baseline (A3). 
 
 The A1–A3 notebooks implement the feature-reduction and centralised logistic-regression experiments. They use a configurable local working directory to access the required datasets and intermediate preprocessing files.
 
-Before executing the notebooks, specify the location of your research workspace using the MIMIC_FAIRNESS_WORKDIR environment variable.
 
 The model predicts length of stay greater than four days using a 351-feature representation (193 binary features and 158 continuous features). The FL model follows the corresponding linear binary-classification design. The feature-order manifest and preprocessing specification form part of the required experimental inputs. The notebooks follow the data preparation and feature specifications used in the original study. Researchers should ensure that the required input files are available in the expected format.
 
@@ -69,8 +65,6 @@ Relevant preparation and validation source includes:
 - `federated_learning/create_local_train_test_splits.py`
 - `federated_learning/materialize_partitions.py`
 - `federated_learning/validate_config.py`
-
-The original-study assertions, including cohort and partition sizes, are retained to detect deviations from the studied configuration. Alternative datasets require their own validated preparation procedure; they should not silently bypass those assertions.
 
 **A3 and F0 are not interchangeable result sets.** A3 used a two-stage global patient-level split. F0/F1/F2 use hospital-first, fixed patient partitions. Although the model specification is carried forward, the exact training/test patient assignments are not necessarily the same, so A3-vs-F0/F1/F2 scores are not a fully controlled split-matched comparison.
 
