@@ -18,7 +18,7 @@ Healthcare data can support research, service planning, and predictive modelling
 
 The research was evaluated in a **five-hospital simulated setting using authorised MIMIC-IV data**. HEAL-DP is an experimental research implementation, not a production clinical system.
 
-## Technical report and research results
+## Report and research results
 
 **[Read the HEAL-DP Technical Report](report/HEAL-DP_Report.pdf)**
 
@@ -26,11 +26,19 @@ The technical report is the primary reference for the system architecture, priva
 
 **The reported research results originate from experiments performed using authorised MIMIC-IV data.** The repository does not distribute MIMIC-IV patient records, patient-level datasets, hospital partitions, model weights, or restricted experimental outputs.
 
-## Interactive demonstrator
+## Demonstrator
 
-A companion **Streamlit demonstrator** presents the HEAL-DP architecture, privacy-enhancing techniques, and selected research findings through an interactive interface.
+ HEAL-DP framework is available here:
 
-**Streamlit demonstrator:** Link to be added after deployment.
+ **[Launch the HEAL-DP Demonstrator](https://heal-dp-demo.streamlit.app/)**
+
+The demonstrator provides interactive exploration of the privacy-preserving
+analytics pathways developed in this work, including Central Differential
+Privacy, Homomorphic Encryption, and Federated Learning.
+
+The public interface uses synthetic data for interactive exploration and
+disclosure-reviewed experimental results for demonstrating the evaluated
+privacy, utility, and computational trade-offs.
 
 The demonstrator distinguishes between:
 
@@ -75,6 +83,8 @@ $env:MIMIC_FAIRNESS_WORKDIR = "workspace-path"
 Researchers must supply the input data and preprocessing artifacts required by the original experimental protocol. The feature specification, patient partitions, and DP calibration reflect the study configuration; applying the implementation to other data or training settings requires validation and, where applicable, recalibration.
 
 The dataset and corresponding access permissions are **not provided** by this repository. The code and demonstrator are intended for research and methodological evaluation, not clinical deployment.
+
+
 
 ## License
 
