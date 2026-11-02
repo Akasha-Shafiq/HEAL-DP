@@ -4,7 +4,7 @@
 
 HEAL-DP is a research framework investigating how **Differential Privacy (DP)**, **Homomorphic Encryption (HE)**, and **Federated Learning (FL)** can support statistical analysis and predictive modelling across distributed healthcare data holders while limiting information exposure.
 
-This repository contains the research implementations, modelling notebooks, and evaluation code. The accompanying technical report describes the architecture, experimental methodology, findings, trade-offs, and limitations.
+This repository contains the research implementations, modelling notebooks, and evaluation code. The accompanying technical report describes the architecture, experimental methodology, findings, trade-offs, and limitations. Only synthetic data is used in the demonstrator for illustration purposes. 
 
 ## Research overview
 
